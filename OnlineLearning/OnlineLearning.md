@@ -11,7 +11,9 @@
 
 ## 在线学习算法评估 ##
 
-![](./pic/online_2.png)
+![](./pic/online_2.png)  
+  
+
 解释：评估后悔程度，w为全局最优解，w_t为每次更新的权重，R(T)表示了在线学习和批量学习的gap。当R(T)随T增长低于线性时，效果随迭代而增加.  
 分析方法： 对于在线学习算法，证明其R(T)<=a，得到效果下界。  
 
@@ -20,7 +22,9 @@
 举例：  
 最简单的在线学习算法，在线梯度下降，R(T)分析略。  
 
-![](./pic/online_3.png)
+![](./pic/online_3.png)  
+![](./pic/online_22.png)  
+
 
 ## 关于稀疏性 ##
 
@@ -33,17 +37,17 @@
 
 ## 在线梯度下降l1正则化 ##
 
-![](./pic/online_5.png)
+![](./pic/online_23.png)  
 
 ## 次梯度 ##
 
+![](./pic/online_5.png)
 
-![](./pic/online_6.png)
 
 ## 简单截断法 ##
 
+![](./pic/online_6.png)
 
-![](./pic/online_7.png)
 
 直观的获得稀疏性的方法，当权重小于阈值时设置为0  
 
@@ -51,64 +55,100 @@
 ## 截断梯度法 ##
 
 
-![](./pic/online_8.png)
+![](./pic/online_7.png)
+
+
+
+
+
+
+
+
+![](./pic/online_8.png)  
+
+## l1正则化和简单截断法都是梯度截断的特殊形式。 ##  
+
 ![](./pic/online_9.png)
 
-## l1正则化和简单截断法都是梯度截断的特殊形式。 ##
+
 
 ![](./pic/online_10.png)
-![](./pic/online_11.png)
 
 
 ## FOBOS ##
 
 权重更新分两个步骤：  
 
-![](./pic/online_12.png)
+![](./pic/online_11.png)
+
 
 第一步为梯度下降，第二步在第一步梯度下降得到权重附近加入正则进行最优化。  
 合并公式有：  
 
-![](./pic/online_13.png)
+![](./pic/online_12.png)
 
 考虑正则为l1的FOBOS：  
 
+![](./pic/online_13.png)
+
+使用技巧求解，得到 
+
+![](./pic/online_24.png) 
+
 ![](./pic/online_14.png)
 
-使用技巧求解，得到  
+写成梯度截断的形式： 
 
 ![](./pic/online_15.png)
 
-写成梯度截断的形式：  
-
-![](./pic/online_16.png)
-
-显式的获取稀疏性。  
+显式的获取稀疏性。
 
 ## FTL ##
 
-![](./pic/online_17.png)
+![](./pic/online_16.png)
 
-在线学习中每一轮将w更新为在全部历史轮数上的最有解。  
+  
+在线学习中每一轮将w更新为在全部历史轮数上的最优解。 
 
 ## FTRL ##
 
+![](./pic/online_17.png)
+
+ 
+## FTRL-Proximal ##
+考虑l1-FOBOS的更新公式：
+
+
 ![](./pic/online_18.png)
 
-## FTRL-Proximal ##
-考虑l1-FOBOS的更新公式：  
+定义FTRL损失函数 $$f_(t+1)(x) = g_t(x-x_t) + ( 1/n_t - 1/n_{t-1} )(x-x_t)^2$$   
+套用FTRL优化方法：$$argmin{ \sum{f_t}+R}$$ 得到FTRL的优化函数 
 
 ![](./pic/online_19.png)
 
-定义FTRL损失函数f_(t+1)(x) = g_t(x-x_t) + (1/n_t-1/n_(t-1))(x-x_t)^2  
-套用FTRL优化方法：argmin sigma{f_t}+R 得到FTRL的优化函数  
+将最后一项展开，可以得到 
 
-![](./pic/online_20.png)
+![](./pic/online_20.png)  
 
-将最后一项展开，可以得到  
+解法如下：  
+![](./pic/online_25.png) 
+
+结果：  
 
 ![](./pic/online_21.png)
 
+
+## FTRL学习率 ##  
+
+FTRL的学习率在每维特征上单独更新  
+
+![](./pic/online_26.png)
+
+保证了在训练一定轮数之后，新的有意义的特征也能对模型起到影响，同时避免训练较多的特征振荡。
+
+
+## FTRL算法逻辑 ##  
+![](./pic/online_27.png)
 
 
 

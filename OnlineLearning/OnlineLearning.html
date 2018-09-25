@@ -62,8 +62,8 @@
 <h2 id="ftrl-proximal">FTRL-Proximal</h2>
 <p>考虑l1-FOBOS的更新公式：</p>
 <p><img src="./pic/online_19.png" /></p>
-<p>定义FTRL损失函数f_(t+1)(x) = g_t(x-x_t) + (1/n_t-1/n_(t-1))(x-x_t)^2<br />
-套用FTRL优化方法：argmin sigma{f_t}+R 得到FTRL的优化函数</p>
+<p>定义FTRL损失函数 <br /><span class="math display"><em>f</em><sub>(</sub><em>t</em> + 1)(<em>x</em>) = <em>g</em><sub><em>t</em></sub>(<em>x</em> − <em>x</em><sub><em>t</em></sub>) + (1/<em>n</em><sub><em>t</em></sub> − 1/<em>n</em><sub><em>t</em> − 1</sub>)(<em>x</em> − <em>x</em><sub><em>t</em></sub>)<sup>2</sup></span><br /><br />
+套用FTRL优化方法：<br /><span class="math display"><em>a</em><em>r</em><em>g</em><em>m</em><em>i</em><em>n</em>∑<em>f</em><sub><em>t</em></sub> + <em>R</em></span><br /> 得到FTRL的优化函数</p>
 <p><img src="./pic/online_20.png" /></p>
 <p>将最后一项展开，可以得到</p>
 <p><img src="./pic/online_21.png" /></p>
